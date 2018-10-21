@@ -1,4 +1,4 @@
-`<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang = "en">
 <head>
 <meta charset = "UTF-8">
@@ -47,8 +47,8 @@ input[type=submit] {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  width: 250px;
-  margin: 0px 0px 0px calc(50% - 125px);
+  width: 20%;
+  margin: 0px 0px 0px 40%;
 }
 
 /* Style the container */
@@ -68,8 +68,8 @@ input[type=submit] {
 /* Floating column for inputs: 75% width */
 .col-75 {
   float: left;
-  width: 800px;
-  margin: 0px 0px 10px calc(50% - 120px);
+  width: 59%;
+  margin: 0px 0px 10px 41%;
 }
 
 /* Clear floats after the columns */
@@ -80,12 +80,12 @@ input[type=submit] {
 }
 
 /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 600px) {
+/*@media screen and (max-width: 600px) {
   .col-25, .col-75, input[type=submit] {
     width: 100%;
     margin-top: 0px;
   }
-}
+}*/
 
 </style>
 
@@ -96,17 +96,17 @@ input[type=submit] {
 	</div>
 
 	<div>
-  <form action="action_page.php">
+  <form action="visualization">
     <div class="row">
       
       <div class="col-75">
-        <input type="text" id="fname" name="firstname" placeholder="UW NetID..">
+        <input type="text" id="fname" name="UWNetID" placeholder="UW NetID..">
       </div>
     </div>
     <div class="row">
 
       <div class="col-75">
-        <input type="text" id="lname" name="lastname" placeholder="Password..">
+        <input type="text" id="lname" name="Password" placeholder="Password..">
       </div>
     </div>
  
