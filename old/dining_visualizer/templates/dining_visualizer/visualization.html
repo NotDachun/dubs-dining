@@ -1,6 +1,34 @@
 {% extends "dining_visualizer/base.html"%}
+{% load static %}
+
+{% block links %}
+    <link rel="stylesheet" type="text/css" href="{% static 'dining_visualizer/visualization.css' %}">
+        <link href="https://fonts.googleapis.com/css?family=Corben" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Atma" rel="stylesheet">
+{% endblock links %}
+
 
 {% block content %}
-<iframe width="100%"" height="600px" src="https://app.powerbi.com/view?r=eyJrIjoiZDUyZjRlOGItMWJiNC00NDk1LWFiMTctN2MwYWE2ZDBhODUyIiwidCI6ImY2YjZkZDViLWYwMmYtNDQxYS05OWEwLTE2MmFjNTA2MGJkMiIsImMiOjZ9" frameborder="0" allowFullScreen="true"></iframe>
-<iframe width="100%" height="600px" src="https://app.powerbi.com/view?r=eyJrIjoiNzI1YTc4ZGUtZGM3MC00MTJhLTk3Y2MtYTA5ZWM2NzQ2ZjFkIiwidCI6ImY2YjZkZDViLWYwMmYtNDQxYS05OWEwLTE2MmFjNTA2MGJkMiIsImMiOjZ9" frameborder="0" allowFullScreen="true"></iframe>
+
+<body>
+ 
+    <div class="header">
+    	<div class="header-title">
+    			<h1>Dubs Dining</h1>
+
+    			<header>
+    	</div>
+    	
+    </div>
+ 
+<div class="content">
+<iframe config.settings.background = models.BackgroundType.Transparent; width=100%px height=40% src="https://app.powerbi.com/view?r=eyJrIjoiZDUyZjRlOGItMWJiNC00NDk1LWFiMTctN2MwYWE2ZDBhODUyIiwidCI6ImY2YjZkZDViLWYwMmYtNDQxYS05OWEwLTE2MmFjNTA2MGJkMiIsImMiOjZ9" style="border:none;" frameborder="0" allowFullScreen="false"></iframe>
+<iframe config.settings.background = models.BackgroundType.Transparent; width=100% height="50%" src="https://app.powerbi.com/view?r=eyJrIjoiNzI1YTc4ZGUtZGM3MC00MTJhLTk3Y2MtYTA5ZWM2NzQ2ZjFkIiwidCI6ImY2YjZkZDViLWYwMmYtNDQxYS05OWEwLTE2MmFjNTA2MGJkMiIsImMiOjZ9" frameborder="0" allowFullScreen="false"></iframe>
+<!-- <object data="https://app.powerbi.com/view?r=eyJrIjoiZDUyZjRlOGItMWJiNC00NDk1LWFiMTctN2MwYWE2ZDBhODUyIiwidCI6ImY2YjZkZDViLWYwMmYtNDQxYS05OWEwLTE2MmFjNTA2MGJkMiIsImMiOjZ9" width=100% height=100% type="text/html">
+    Alternative Content
+</object>
+<embed src="https://app.powerbi.com/view?r=eyJrIjoiZDUyZjRlOGItMWJiNC00NDk1LWFiMTctN2MwYWE2ZDBhODUyIiwidCI6ImY2YjZkZDViLWYwMmYtNDQxYS05OWEwLTE2MmFjNTA2MGJkMiIsImMiOjZ9" width=100% height=100%/>
+<embed src="https://app.powerbi.com/view?r=eyJrIjoiNzI1YTc4ZGUtZGM3MC00MTJhLTk3Y2MtYTA5ZWM2NzQ2ZjFkIiwidCI6ImY2YjZkZDViLWYwMmYtNDQxYS05OWEwLTE2MmFjNTA2MGJkMiIsImMiOjZ9" width=100% height=100%/>
+ -->
+</div>
 {% endblock content %}
