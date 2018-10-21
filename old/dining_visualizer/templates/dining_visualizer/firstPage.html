@@ -1,0 +1,37 @@
+{% extends 'dining_visualizer/base.html' %}
+{% load static %}
+
+
+{% block links %}
+    <link href="https://fonts.googleapis.com/css?family=Corben" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Atma" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'dining_visualizer/firstPage.css' %}">
+{% endblock links %}
+
+{% block content %}
+<div class="title">
+  <h1>Dubs</h1>
+  <h1>Dining</h1>
+</div>
+
+<div>
+  <form action="{% url 'visualization' %}" method="post">
+    {% csrf_token %}
+    <div class="row">
+      <div class="col-75">
+        <input type="text" id="fname" name="UWNetID" placeholder="UW NetID..">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-75">
+        <input type="password" id="lname" name="Password" placeholder="Password..">
+      </div>
+    </div>
+ 
+    <div class="row"">
+      <input type="submit" value="Submit">
+    </div>
+  </form>
+</div>
+{% endblock content%}
