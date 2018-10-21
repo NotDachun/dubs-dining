@@ -1,0 +1,550 @@
+<html class="fa-events-icons-ready" lang="en-us"><head>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-112722192-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-112722192-1');
+    </script>
+
+
+
+    <title>
+	Online Card Office Transaction History
+</title><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Google web fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700">
+
+    <!-- Leverage Kentico's stylesheet caching for our static file -->
+    <link href="/CMSPages/GetResource.ashx?stylesheetfile=~/App_Themes/HFSExtranet/CSS/style.css" type="text/css" rel="stylesheet">
+
+    <!-- IE, you're literally the worst. -->
+    <style>
+        _:-ms-fullscreen, :root .card { display: block; }
+        _:-ms-fullscreen, :root .card-footer { position: absolute; bottom: 0; width: 100%; }
+        _:-ms-fullscreen, :root .card-body { padding-bottom: 5rem; }
+        _:-ms-fullscreen, :root .cafetogo-card .card-body { padding-bottom: 7.5rem; }
+    </style>
+
+    <!-- Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <!-- Object-fit hack for IE. (Reads CSS font-family property for implied object-fit value) -->
+    <script src="/App_Themes/HFSExtranet/Scripts/libs/ofi.min.js"></script>
+
+    <!-- FontAwesome icon font -->
+    <script src="https://use.fontawesome.com/766985c871.js"></script><link rel="stylesheet" href="https://use.fontawesome.com/766985c871.css" media="all">
+
+    
+
+
+    <script>
+        $(function () {
+
+            objectFitImages(); // function resides in ofi.min.js. (See above)
+
+            var mobileMenuButton = $('#mobile-menu'),
+                mobileNavMenu = $('#mobile-nav'),
+                mobileSearchInput = $('#mobile-search'),
+                desktopSearchButton = $('#desktop-search'),
+                desktopSearchPane = $('#desktop-search-pane'),
+                desktopSearchInput = $('#desktop-search-input');
+
+            // Toggle mobile menu when button is clicked, retaining collapse status for desktop search input.
+            mobileMenuButton.click(function () {
+                desktopSearchPane.toggleClass('d-none');
+                mobileNavMenu.toggleClass('d-none');
+                mobileSearchInput.focus();
+            });
+
+            // Toggle desktop search pane when button is clicked, retaining collapse status for mobile menu.
+            desktopSearchButton.click(function () {
+                mobileNavMenu.toggleClass('d-none');
+                desktopSearchPane.toggleClass('d-none');
+                desktopSearchInput.focus();
+            });
+
+            // Mirror input from one field to the other
+            desktopSearchInput.bind('keypress keyup', function () {
+                mobileSearchInput.val($(this).val());
+            });
+            mobileSearchInput.bind('keypress keyup', function () {
+                desktopSearchInput.val($(this).val());
+            });
+
+            // Switch inputs and retain search value between breakpoints
+            desktopSearchInput.bind('blur', function () {
+                mobileSearchInput.focus();
+            });
+            mobileSearchInput.bind('blur', function () {
+                desktopSearchInput.focus();
+            });
+            $(window).resize(function () {
+                if ($(window).width() >= 992 && $('#mobile-search').is(':focus')) {
+                    $('#desktop-search-input').focus();
+                    var tmpStr = $('#desktop-search-input').val();
+                    $('#desktop-search-input').val('');
+                    $('#desktop-search-input').val(tmpStr);
+                } else if ($(window).width() < 992 && $('#desktop-search-input').is(':focus')) {
+                    $('#mobile-search').focus();
+                    var tmpStr = $('#mobile-search').val();
+                    $('#mobile-search').val('');
+                    $('#mobile-search').val(tmpStr);
+                }
+            });
+
+            mobileSearchInput.keypress(function (e) {
+                if (e.which == 13) { window.location.href = '/Search?q=' + mobileSearchInput.val().replace(' ', '+'); return false; }
+            });
+
+            desktopSearchInput.keypress(function (e) {
+                if (e.which == 13) { window.location.href = '/Search?q=' + desktopSearchInput.val().replace(' ', '+'); return false }
+            });
+
+            if ($(location).attr('hostname').indexOf('v-cms-00') >= 0) {
+                $('header').removeClass('background-purple');
+                $('header').addClass('background-gray-dark');
+            }
+
+            $('.btn-nav').each(function () {
+                $(this).html('<div class="btn-nav-text">' + $(this).text() + '</div><div class="btn-nav-slash" style="background-color:' + $(this).css('color') + '"></div><div class="btn-nav-chevron"><span class="fa fa-angle-right" aria-hidden="true"></span></div>');
+            });
+
+
+            $('button[title="Calendar"] i').each(function () {
+                $(this).replaceWith('<i class="fa fa-calendar"></i>');
+
+            });
+            
+
+        });
+    </script>
+<link href="/WebResource.axd?d=QygwMQZzIIofqDLXDr-HEPd-5kR84xmm6CbM_DQ_SVOKCzyqFe3OF5LkzhYCHPj1kMLCqZ_C9peUhKif7daHnSLrErQLw3oh5zStjMVfrg7XOi1CWrfBMhoHxDQ4kdQdycS74zYt3EID6ucuo1xnQg2&amp;t=636155761100000000" type="text/css" rel="stylesheet"><script src="https://www.washington.edu/static/UW-Alert-Banner/alert/?c=displayAlert&amp;test=false"></script></head>
+
+<body>
+    <form method="post" action="./TransactionHistory.aspx" onsubmit="javascript:return WebForm_OnSubmit();" id="aspnetForm">
+<div class="aspNetHidden">
+<input name="__CMSCsrfToken" id="__CMSCsrfToken" value="OyQZE7fscAA+1+Pr/rBKDWu3iHz1rnKk5CHAZI3bAL5UKlKDsDq9mAx5DzVGHcwe/EUBrGPwo/x9k8FfY7oBudC9oBFVBzPXs+f2RwFi17s=" type="hidden">
+<input name="__EVENTTARGET" id="__EVENTTARGET" value="" type="hidden">
+<input name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" type="hidden">
+<input name="__VIEWSTATE" id="__VIEWSTATE" value="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" type="hidden">
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['aspnetForm'];
+if (!theForm) {
+    theForm = document.aspnetForm;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="/WebResource.axd?d=pynGkmcFUV13He1Qd6_TZF3-U8Nd17pNih3LfOfaLhV-RJcDkY9bDKlZN_eAhii28-N27CcCxyCEWiuPaBG0qw2&amp;t=636426603113374701" type="text/javascript"></script>
+
+
+<script src="/ScriptResource.axd?d=nv7asgRUU0tRmHNR2D6t1KKfwFOwTxxKFebj_iLfWn4GFuiJwFoWetpaR6nxj7pxQAwkvTJOLyu8K_AHzg48HdYMIKhCyx4AGIvhwoXrm4P4W9K382HS6aNl52oL4aWDGV7Mj7l4h5o6OUUfY2ojOA2&amp;t=ffffffffb3e28bb5" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=x6wALODbMJK5e0eRC_p1LQpCLxBz56v_1FN4Crg6WwLBz8bhqklkjlQedFBzbj1qefS3upA-6FWjS6OjcBFleeE7J8UAbTNDQiNqq_9c1hEcceUGHfWUgDgafvB6NMTA0&amp;t=7c776dc1" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=P5lTttoqSeZXoYRLQMIScLtcRHoql9BSCf7FFg4HOM36Yx3RUemxPFzdhAhRfj7GyTACEIlcQSTGStN0QLKDgDaOBpyUZDfbYQeDt0ySiJcdZCgzH-74j7rCCMiFip3g0&amp;t=7c776dc1" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=NHo7rzvB81m25b5lv-ojMUD3Bw6XLyx5TOjvDHHioWrA0rc7bdDunGli8ZFpwYvt_PEunfpnJ47EusuuPcaf68clOGUyliSTeGAWwoHIu325CtdxdeW_1yuGipOuj4b00&amp;t=7c776dc1" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=uiErWUqGhD5_ddnGX4Xq_kQ5SHtJDUVo3eBajquRT4bEhGgDqH6IEJAJ1rwIbUA_s9DO-heIAMUOXI1k6TrBPr6cyN4obymS4Bgz-2cfmyblfzbtcpPjqtlPZgth6s6t0&amp;t=7c776dc1" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=cwGphBcvejt2VIyBHnRhTalATbURvzFDh7xeb6QNg8LmCl3gQ47TNPKPQ-2tNQmVV3cRE7vUrgPl-I0-mitn7idcxzY4ebNvs6RNfahlA_1iw2DMDsxulatA7YXe-5sq0&amp;t=7c776dc1" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=IDWj4WSOOvkdPRnPVbJVZMi3zF7v3WvExLknew69y65jh3MEdmh16jTA21gKaxtcMifZYkZUYxikRpKNNZml54_PJF7xDHlvvRe8o4x84Vh4Qg60RCh1O4Iq8zEL3DnV0&amp;t=7c776dc1" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=G7OZOzpYF9XwHB8eN29Yb8dKy0OU_DBtWXPQOnfvn0-JjYNFqtAoPCW0vfDRPfXSJreJSsxPjoQSIbWLrzCL1gpJ0hNUPrUJtWyl0kAYrQjR-4v9C4_DJcFYiqxwr254jjuRGSyXpiH0rrdybGgkHw2&amp;t=7c776dc1" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=QURf4xOsrV7WTJCWSccZW1XFRVPdbb0jWebZlMUdL6VxzlkXNe9Eqa5zwTUiaFOWfWMW3JiyZopcJ_enHI15shHv8HWl73L3tz1qImoemNCcyEbRuDClJyNcoFPIfft3a51VZrOpFf6DMyAZXFhpMQ2&amp;t=7c776dc1" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=AQKZK7YRDAbnuPmSY4LmT9A-90a_yojF3cR8UyiZzZYnA6b1RgX9-TPSKRfMamrVbtKmAR3mKDQqy3f6_3tYpNlXNloKFNiid9Tc2rSVpHaFlXq4IdibqIlNjQHE1_6HAkGpwssTytVWwWHpbxkZtg2&amp;t=7c776dc1" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=myBlz7mQmGQE80F8-WeLscH7dr2J6mvzZp7bxKfNasDF0-eE8wdkf_f2PrYBbRy--1u5MBGc5ntz7wnwVDiwYPMMpOcDZyJuaXWrNLeCWBV-tMEG1LF9nTAPGObrrSHt0&amp;t=7c776dc1" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=AbIlFJt9rD7KB6sgS-awpQmuJ0aypI3bXmgCyOQNfb_LCPR0rIIfizUBr00_WNgu0mx9fLPo6j7xPCBRQ0Z4Afvss3oMyqXCKDeBpkxzhrNlu5hPi6IyrD9ufhvu1xj-uG1a4SxFr0PFCwxBrbB1DQ2&amp;t=7c776dc1" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+function WebForm_OnSubmit() {
+if (typeof(ValidatorOnSubmit) == "function" && ValidatorOnSubmit() == false) return false;
+return true;
+}
+//]]>
+</script>
+
+<div class="aspNetHidden">
+
+	<input name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="238AF4EA" type="hidden">
+	<input name="__SCROLLPOSITIONX" id="__SCROLLPOSITIONX" value="0" type="hidden">
+	<input name="__SCROLLPOSITIONY" id="__SCROLLPOSITIONY" value="0" type="hidden">
+	<input name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="Yl7+zUsXio1ArEHnnFu2mLIqeKt5TppPBO+tOY9R8qAiaTbVWkKibymGL3WlG8I6oi7k3+tixi9vJNhoC3lzMpiHtkJj+eofBTSVrNYHSKNh2yyTpnF2ggh8UOn3d9Bb0Jo7gcvTxJzaoMg5WbxkVH+XGah7AwhncvaEDJAlCCdnqFIyTBOecjndZ1yjnOth3T0ZcXbJO4Bn3V9ljQ2AUA==" type="hidden">
+</div>
+
+        
+        <a style="position:absolute;z-index:999;" class="p-3 background-gray-light sr-only sr-only-focusable" href="#mainContent">Skip to main content</a>    
+        <header class="d-block background-purple">
+            
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <a id="logo" href="/">
+                            <img id="logo-w" src="/getmedia/14b05c30-3de1-4ecf-b23f-7ce94e5798c5/W.aspx" aria-hidden="true" alt="W">
+                            <img id="logo-signature" src="/getmedia/0286e853-89b5-4318-af8e-21baea97152d/Signature.aspx" alt="University of Washington Housing &amp; Food Services">
+                        </a>
+                        <a id="mobile-menu" href="#">
+                <span class="fa fa-bars" aria-hidden="true"></span>
+            </a>
+                    </div>
+                </div>
+                <nav aria-label="Mobile Navigation">
+                    <ul class="row d-none" id="mobile-nav">
+                        <li class="col-12">
+                            <div role="search" aria-label="Mobile Search">
+                                <label class="sr-only" for="mobile-search">Search HFS</label>
+                                <input id="mobile-search" class="form-control" placeholder="What can we help you find?" type="text">
+                            </div>
+                        </li>
+                        <li class="col-12">
+                            <a class="col-12" href="/Live">Live</a>
+                        </li>
+                        <li class="col-12">
+
+                        <a href="/Experience">Experience</a>
+                        </li>
+                        <li class="col-12"><a href="/Eat">Eat</a></li>
+                        <li class="col-12">
+                             <a href="/Explore">Explore</a>
+                        </li>
+                   
+                    </ul>
+                </nav>
+            </div>
+            <div id="desktop-search-pane" class="d-none" role="search" aria-label="Search">
+                <label class="sr-only" for="desktop-search-input">Serach HFS</label>
+                <input id="desktop-search-input" class="background-gray-light" placeholder="What can we help you find?" type="text">
+            </div>
+            <nav>
+                <ul id="desktop-nav">
+                    <li><a href="/Live">Live</a></li>
+                    <li class="boundless-slash" aria-hidden="true"></li>
+                    <li><a href="/Eat">Eat</a></li>
+                    <li class="boundless-slash" aria-hidden="true"></li>
+                    <li><a href="/Experience">Experience</a></li>
+                    <li class="boundless-slash" aria-hidden="true"></li>
+                    <li><a href="/Explore">Explore</a></li>
+                    <li class="boundless-slash" aria-hidden="true"></li>
+                    <li><a id="desktop-search" href="#" aria-label="Search HFS"><span class="fa fa-search" aria-hidden="true"></span></a></li>
+                </ul>
+            </nav>
+            
+        </header>
+        <main id="mainContent">
+            
+    <script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ctl00$MasterBody$ScriptManager2', 'aspnetForm', ['tctl00$MasterBody$UpdatePanel1',''], ['ctl00$MasterBody$btnSubmit',''], [], 90, 'ctl00');
+//]]>
+</script>
+
+    
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <div class="page-title">
+                <div>
+                    <div class="h1 mb-0" aria-hidden="true">Husky Card</div>
+                </div>
+                
+                <div id="ctl00_MasterBody_ctl00_BoundlessSlash1" class="boundless-slash purple"></div>
+                
+                <div>
+                    <h1 class="h3 mb-0">Transaction History</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-9">
+                <input name="ctl00$MasterBody$hidAccountID" id="ctl00_MasterBody_hidAccountID" value="830087" type="hidden">
+                <p>
+                    <b>Account Number:</b> &nbsp;&nbsp;<span id="ctl00_MasterBody_lblCustomerNumber">1864864</span><br>
+                    <b>Account Name:</b> &nbsp;&nbsp;<span id="ctl00_MasterBody_lblAccountName">Resident Dining Account</span>
+                </p>
+                <p>
+                From:
+                            <input name="ctl00$MasterBody$txtFromDate" value="9/21/2018" id="ctl00_MasterBody_txtFromDate" disabled="disabled" class="aspNetDisabled" type="text">
+                <img id="ctl00_MasterBody_imgFromCalendar" src="../../HFSExtranet/media/Shared/Calendar_scheduleHS.png" style="height:16px;width:16px;">
+                
+                To:
+                            <input name="ctl00$MasterBody$txtToDate" value="10/21/2018" id="ctl00_MasterBody_txtToDate" disabled="disabled" class="aspNetDisabled" type="text">
+                <img id="ctl00_MasterBody_imgToCalendar" src="../../HFSExtranet/media/Shared/Calendar_scheduleHS.png" style="height:16px;width:16px;">
+                
+                <input name="ctl00$MasterBody$btnSubmit" value="Search" onclick="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$MasterBody$btnSubmit&quot;, &quot;&quot;, true, &quot;&quot;, &quot;&quot;, false, false))" id="ctl00_MasterBody_btnSubmit" type="submit"><br>
+                <span id="ctl00_MasterBody_CompareValidator1" class="validationMessage" style="display:none;">&nbsp;&nbsp;FROM date must be earlier than TO date.</span>
+                </p>
+                
+                <div class="p">
+                    <style>.MyCalendar { background-color: white;}</style>
+                <div id="ctl00_MasterBody_UpdatePanel1">
+	
+                        <div>
+		<table class="table table-bordered table-sm small" rules="all" id="ctl00_MasterBody_gvwHistory" style="border-collapse:collapse;" cellspacing="0" border="1">
+			<tbody><tr>
+				<th scope="col" align="center">Date of Service</th><th scope="col" align="center">Time</th><th scope="col" align="center">Deposit</th><th scope="col" align="center">Charge</th><th scope="col" align="center">Balance</th><th scope="col" align="center">Location</th>
+			</tr><tr>
+				<td align="center">2018-SEP-21</td><td align="center">11:32 AM</td><td align="right"> </td><td align="right">      $6.19</td><td align="right">    $887.04</td><td align="center">Local Point</td>
+			</tr><tr>
+				<td align="center">2018-SEP-23</td><td align="center">03:13 PM</td><td align="right"> </td><td align="right">      $3.99</td><td align="right">    $883.05</td><td align="center">District Market</td>
+			</tr><tr>
+				<td align="center">2018-SEP-23</td><td align="center">08:19 PM</td><td align="right"> </td><td align="right">      $6.99</td><td align="right">    $876.06</td><td align="center">Local Point</td>
+			</tr><tr>
+				<td align="center">2018-SEP-23</td><td align="center">08:29 PM</td><td align="right"> </td><td align="right">      $6.90</td><td align="right">    $869.16</td><td align="center">Pagliacci @ LP</td>
+			</tr><tr>
+				<td align="center">2018-SEP-24</td><td align="center">03:15 PM</td><td align="right"> </td><td align="right">      $3.85</td><td align="right">    $865.31</td><td align="center">Pagliacci @ LP</td>
+			</tr><tr>
+				<td align="center">2018-SEP-25</td><td align="center">03:51 PM</td><td align="right"> </td><td align="right">      $7.34</td><td align="right">    $857.97</td><td align="center">Local Point</td>
+			</tr><tr>
+				<td align="center">2018-SEP-26</td><td align="center">07:23 PM</td><td align="right"> </td><td align="right">      $7.30</td><td align="right">    $850.67</td><td align="center">Pagliacci @ LP</td>
+			</tr><tr>
+				<td align="center">2018-SEP-27</td><td align="center">03:21 PM</td><td align="right"> </td><td align="right">      $3.45</td><td align="right">    $847.22</td><td align="center">Pagliacci @ LP</td>
+			</tr><tr>
+				<td align="center">2018-OCT-01</td><td align="center">12:00 PM</td><td align="right"> </td><td align="right">      $6.99</td><td align="right">    $840.23</td><td align="center">Local Point</td>
+			</tr><tr>
+				<td align="center">2018-OCT-01</td><td align="center">03:33 PM</td><td align="right"> </td><td align="right">      $7.48</td><td align="right">    $832.75</td><td align="center">HD - DM Crafted</td>
+			</tr><tr>
+				<td align="center">2018-OCT-01</td><td align="center">07:48 PM</td><td align="right"> </td><td align="right">      $7.99</td><td align="right">    $824.76</td><td align="center">Local Point</td>
+			</tr><tr>
+				<td align="center">2018-OCT-02</td><td align="center">11:30 AM</td><td align="right"> </td><td align="right">      $4.79</td><td align="right">    $819.97</td><td align="center">District Market</td>
+			</tr><tr>
+				<td align="center">2018-OCT-02</td><td align="center">07:24 PM</td><td align="right"> </td><td align="right">      $6.19</td><td align="right">    $813.78</td><td align="center">Local Point</td>
+			</tr><tr>
+				<td align="center">2018-OCT-03</td><td align="center">03:29 PM</td><td align="right"> </td><td align="right">      $7.48</td><td align="right">    $806.30</td><td align="center">HD - DM Crafted</td>
+			</tr><tr>
+				<td align="center">2018-OCT-03</td><td align="center">04:39 PM</td><td align="right"> </td><td align="right">      $5.34</td><td align="right">    $800.96</td><td align="center">Cafe - Reboot</td>
+			</tr><tr>
+				<td align="center">2018-OCT-04</td><td align="center">02:28 PM</td><td align="right"> </td><td align="right">      $7.71</td><td align="right">    $793.25</td><td align="center">MD - Motosurf</td>
+			</tr><tr>
+				<td align="center">2018-OCT-05</td><td align="center">10:40 AM</td><td align="right"> </td><td align="right">      $7.03</td><td align="right">    $786.22</td><td align="center">Cafe - Reboot</td>
+			</tr><tr>
+				<td align="center">2018-OCT-08</td><td align="center">12:14 PM</td><td align="right"> </td><td align="right">      $3.80</td><td align="right">    $782.42</td><td align="center">Cafe - Reboot</td>
+			</tr><tr>
+				<td align="center">2018-OCT-08</td><td align="center">03:14 PM</td><td align="right"> </td><td align="right">      $6.82</td><td align="right">    $775.60</td><td align="center">HD - Dub Street</td>
+			</tr><tr>
+				<td align="center">2018-OCT-08</td><td align="center">08:42 PM</td><td align="right"> </td><td align="right">      $6.30</td><td align="right">    $769.30</td><td align="center">Pagliacci @ LP</td>
+			</tr><tr>
+				<td align="center">2018-OCT-09</td><td align="center">12:53 PM</td><td align="right"> </td><td align="right">      $5.34</td><td align="right">    $763.96</td><td align="center">Cafe - Reboot</td>
+			</tr><tr>
+				<td align="center">2018-OCT-10</td><td align="center">11:58 AM</td><td align="right"> </td><td align="right">      $7.64</td><td align="right">    $756.32</td><td align="center">Cafe - Reboot</td>
+			</tr><tr>
+				<td align="center">2018-OCT-10</td><td align="center">01:45 PM</td><td align="right"> </td><td align="right">      $7.48</td><td align="right">    $748.84</td><td align="center">HD - DM Crafted</td>
+			</tr><tr>
+				<td align="center">2018-OCT-10</td><td align="center">06:45 PM</td><td align="right"> </td><td align="right">      $6.19</td><td align="right">    $742.65</td><td align="center">Local Point</td>
+			</tr><tr>
+				<td align="center">2018-OCT-11</td><td align="center">02:40 PM</td><td align="right"> </td><td align="right">      $6.80</td><td align="right">    $735.85</td><td align="center">Pagliacci @ LP</td>
+			</tr><tr>
+				<td align="center">2018-OCT-11</td><td align="center">07:35 PM</td><td align="right"> </td><td align="right">      $7.99</td><td align="right">    $727.86</td><td align="center">Local Point</td>
+			</tr><tr>
+				<td align="center">2018-OCT-11</td><td align="center">07:57 PM</td><td align="right"> </td><td align="right">      $6.99</td><td align="right">    $720.87</td><td align="center">Local Point</td>
+			</tr><tr>
+				<td align="center">2018-OCT-12</td><td align="center">01:40 PM</td><td align="right"> </td><td align="right">      $8.36</td><td align="right">    $712.51</td><td align="center">HD - Caribbean</td>
+			</tr><tr>
+				<td align="center">2018-OCT-15</td><td align="center">09:39 AM</td><td align="right"> </td><td align="right">      $6.04</td><td align="right">    $706.47</td><td align="center">Cafe - Reboot</td>
+			</tr><tr>
+				<td align="center">2018-OCT-16</td><td align="center">11:30 AM</td><td align="right"> </td><td align="right">      $9.56</td><td align="right">    $696.91</td><td align="center">HD - Dub Street</td>
+			</tr><tr>
+				<td align="center">2018-OCT-16</td><td align="center">02:07 PM</td><td align="right"> </td><td align="right">      $2.50</td><td align="right">    $694.41</td><td align="center">Vending Coke API</td>
+			</tr><tr>
+				<td align="center">2018-OCT-17</td><td align="center">11:23 AM</td><td align="right"> </td><td align="right">      $5.49</td><td align="right">    $688.92</td><td align="center">Cafe - Reboot</td>
+			</tr><tr>
+				<td align="center">2018-OCT-18</td><td align="center">03:06 PM</td><td align="right"> </td><td align="right">      $3.99</td><td align="right">    $684.93</td><td align="center">District Market</td>
+			</tr><tr>
+				<td align="center">2018-OCT-18</td><td align="center">07:36 PM</td><td align="right"> </td><td align="right">      $7.99</td><td align="right">    $676.94</td><td align="center">Local Point</td>
+			</tr><tr>
+				<td align="center">2018-OCT-19</td><td align="center">11:54 AM</td><td align="right"> </td><td align="right">      $7.97</td><td align="right">    $668.97</td><td align="center">HD - Siganos</td>
+			</tr><tr>
+				<td align="center">2018-OCT-19</td><td align="center">02:50 PM</td><td align="right"> </td><td align="right">      $3.25</td><td align="right">    $665.72</td><td align="center">Cafe - Reboot</td>
+			</tr><tr>
+				<td align="center">2018-OCT-19</td><td align="center">04:27 PM</td><td align="right"> </td><td align="right">      $3.99</td><td align="right">    $661.73</td><td align="center">District Market</td>
+			</tr><tr>
+				<td align="center">2018-OCT-19</td><td align="center">07:19 PM</td><td align="right"> </td><td align="right">     $10.68</td><td align="right">    $651.05</td><td align="center">Center Table</td>
+			</tr><tr>
+				<td align="center">2018-OCT-20</td><td align="center">01:44 AM</td><td align="right"> </td><td align="right">      $2.50</td><td align="right">    $648.55</td><td align="center">Vending Coke API</td>
+			</tr>
+		</tbody></table>
+	</div>
+                        
+                    
+</div>
+                </div>
+                <p>
+                    <a id="ctl00_MasterBody_lbtnReturnToAcctSummary" title="Return to Account Summary Page" href="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$MasterBody$lbtnReturnToAcctSummary&quot;, &quot;&quot;, true, &quot;&quot;, &quot;&quot;, false, true))">Return to Account Summary Page</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+        </main>
+        <footer class="background-purple small">
+            <div class="mainfooter">
+                <div class="container">
+                    <div class="row">
+                        <div class="d-none d-lg-block col-lg-3 pt-1">
+                            <img src="/getmedia/f15b55d4-fbbd-486e-bac5-252534384598/SignatureFooter.aspx" style="width: 85%" alt="University of Washington Housing &amp; Food Services">
+                        </div>
+                        <div class="col-md-3 col-lg-2">
+                            <p class="mb-0">
+                                <strong>USEFUL LINKS</strong><br>
+                                <a href="/Staff-Jobs">Staff Jobs</a><br>
+                                <a href="/Contact-Us">Contact HFS</a><br>
+                                <a href="/About">About HFS</a><br>
+                                <a href="/Husky-Card-Services">Husky Card</a><br>
+                                <a href="/Conference-Services">Conference Services</a><br>
+                                <a href="/Work-Orders">Submit a Work Order</a>
+                            </p>
+                        </div>
+                        <div class="col-md-4 col-lg-4 pt-4 pt-md-0">
+                            <p class="mb-0">
+                                <strong>UNIVERSITY RELATED LINKS</strong><br>
+                                <a href="https://www.washington.edu/studentlife/" target="_blank">Student Life</a><br>
+                                <a href="https://green.uw.edu" target="_blank">Sustainability</a><br>
+                                <a href="https://depts.washington.edu/uwdrs/" target="_blank">Students with Disabilities</a><br>
+                                <a href="https://www.washington.edu/accessibility/" target="_blank">Accessibility</a><br>
+                                <a href="https://my.uw.edu" target="_blank">MyUW</a>
+                            </p>
+                        </div>
+                        <div class="col-md-5 col-lg-3 pt-4 pt-md-0">
+                            <p class="mb-2">
+                                <strong>CONNECT WITH US</strong>
+                            </p>
+                            <p class="mb-2">
+                                <a class="d-inline-block" href="https://www.facebook.com/UofWhfs" aria-label="HFS on Facebook" target="_blank">
+                                    <span class="fa-stack fa-lg">
+                                        <span class="fa fa-circle fa-stack-2x" aria-hidden="true"></span>
+                                        <span class="fa fa-facebook fa-stack-1x fa-inverse" aria-hidden="true"></span>
+                                    </span>
+                                </a>
+                                <a class="d-inline-block" href="https://www.instagram.com/uwhfs" aria-label="HFS on Instagram" target="_blank">
+                                    <span class="fa-stack fa-lg">
+                                        <span class="fa fa-circle fa-stack-2x" aria-hidden="true"></span>
+                                        <span class="fa fa-instagram fa-stack-1x fa-inverse" aria-hidden="true"></span>
+                                    </span>
+                                </a>
+                                <a class="d-inline-block" href="https://twitter.com/uofwhfs" aria-label="HFS on Twitter" target="_blank">
+                                    <span class="fa-stack fa-lg">
+                                        <span class="fa fa-circle fa-stack-2x" aria-hidden="true"></span>
+                                        <span class="fa fa-twitter fa-stack-1x fa-inverse" aria-hidden="true"></span>
+                                    </span>
+                                </a>
+                                <a class="d-inline-block" href="https://www.youtube.com/user/UWHFS" aria-label="HFS on YouTube" target="_blank">
+                                    <span class="fa-stack fa-lg">
+                                        <span class="fa fa-circle fa-stack-2x" aria-hidden="true"></span>
+                                        <span class="fa fa-youtube fa-stack-1x fa-inverse" aria-hidden="true"></span>
+                                    </span>
+                                </a>
+                                <a class="d-inline-block" href="https://www.pinterest.com/uwhfs" aria-label="HFS on Pinterest" target="_blank">
+                                    <span class="fa-stack fa-lg">
+                                        <span class="fa fa-circle fa-stack-2x" aria-hidden="true"></span>
+                                        <span class="fa fa-pinterest-p fa-stack-1x fa-inverse" aria-hidden="true"></span>
+                                    </span>
+                                </a>
+                            </p>
+                            <p class="mb-0">
+                                1045 NE Campus Parkway<br>
+                                Seattle, WA 98105 | <a href="mailto:hfsinfo@uw.edu">hfsinfo@uw.edu</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="subfooter">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-md-6 col-lg-9 mb-3 mb-md-0">
+                            © 2017 HOUSING &amp; FOOD SERVICES | UNIVERSITY OF WASHINGTON
+                        </div>
+                        <div class="col-4 col-md-2 col-lg-1">
+                            <a href="https://www.washington.edu/online/privacy" target="_blank">PRIVACY</a>
+                        </div>
+                        <div class="col-4 col-md-2 col-lg-1">
+                            <a href="https://www.washington.edu/online/terms" target="_blank">TERMS</a>
+                        </div>
+                        <div class="col-4 col-md-2 col-lg-1">
+                            <a href="/Site-Map">SITE MAP</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    
+<script type="text/javascript">
+//<![CDATA[
+var Page_Validators =  new Array(document.getElementById("ctl00_MasterBody_CompareValidator1"));
+//]]>
+</script>
+
+<script type="text/javascript">
+//<![CDATA[
+var ctl00_MasterBody_CompareValidator1 = document.all ? document.all["ctl00_MasterBody_CompareValidator1"] : document.getElementById("ctl00_MasterBody_CompareValidator1");
+ctl00_MasterBody_CompareValidator1.controltovalidate = "ctl00_MasterBody_txtFromDate";
+ctl00_MasterBody_CompareValidator1.errormessage = "  FROM date must be earlier than TO date.";
+ctl00_MasterBody_CompareValidator1.display = "Dynamic";
+ctl00_MasterBody_CompareValidator1.type = "Date";
+ctl00_MasterBody_CompareValidator1.dateorder = "mdy";
+ctl00_MasterBody_CompareValidator1.cutoffyear = "2029";
+ctl00_MasterBody_CompareValidator1.century = "2000";
+ctl00_MasterBody_CompareValidator1.evaluationfunction = "CompareValidatorEvaluateIsValid";
+ctl00_MasterBody_CompareValidator1.controltocompare = "ctl00_MasterBody_txtToDate";
+ctl00_MasterBody_CompareValidator1.controlhookup = "ctl00_MasterBody_txtToDate";
+ctl00_MasterBody_CompareValidator1.operator = "LessThanEqual";
+//]]>
+</script>
+
+
+<script type="text/javascript">
+//<![CDATA[
+
+var Page_ValidationActive = false;
+if (typeof(ValidatorOnLoad) == "function") {
+    ValidatorOnLoad();
+}
+
+function ValidatorOnSubmit() {
+    if (Page_ValidationActive) {
+        return ValidatorCommonOnSubmit();
+    }
+    else {
+        return true;
+    }
+}
+        
+theForm.oldSubmit = theForm.submit;
+theForm.submit = WebForm_SaveScrollPositionSubmit;
+
+theForm.oldOnSubmit = theForm.onsubmit;
+theForm.onsubmit = WebForm_SaveScrollPositionOnSubmit;
+Sys.Application.add_init(function() {
+    $create(Sys.Extended.UI.CalendarBehavior, {"button":$get("ctl00_MasterBody_imgFromCalendar"),"cssClass":"MyCalendar","id":"ctl00_MasterBody_calFromDate"}, null, null, $get("ctl00_MasterBody_txtFromDate"));
+});
+Sys.Application.add_init(function() {
+    $create(Sys.Extended.UI.CalendarBehavior, {"button":$get("ctl00_MasterBody_imgToCalendar"),"cssClass":"MyCalendar","id":"ctl00_MasterBody_calToDate"}, null, null, $get("ctl00_MasterBody_txtToDate"));
+});
+
+document.getElementById('ctl00_MasterBody_CompareValidator1').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('ctl00_MasterBody_CompareValidator1'));
+}
+//]]>
+</script>
+</form>
+
+    <script src="https://www.washington.edu/static/alert.js"></script>
+
+
+</body></html>
