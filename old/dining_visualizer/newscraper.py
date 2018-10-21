@@ -38,7 +38,7 @@ def get_data_selenium(username, password):
     mydriver.find_element_by_xpath(xpaths['accountButton']).click()
     time.sleep(3)
 
-    save_path =  os.path.join(os.path.dirname(os.path.abspath(__file__)), 'old/dining_visualizer/templates/dining_visualizer')
+    save_path =  os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates/dining_visualizer')
     file_name = 'newTable.html'
     completeName = os.path.join(save_path, file_name)
     file_object = open(completeName, "w")
