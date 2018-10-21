@@ -1,9 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from . import newscraper
 
 def home(request):
-    # return HttpResponse('<h1>hi</h1>')
     return render(request, 'dining_visualizer/firstPage.html')
 
 def visualization(request):
+    get_data(request)
     return render(request, 'dining_visualizer/visualization.html', {'title': 'Visualization'})
+
+def get_data(request):
+    newscraper.get_data_selenium(request.POST['UWNetID'], request.POST['Password'])
