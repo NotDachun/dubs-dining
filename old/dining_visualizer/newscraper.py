@@ -44,8 +44,10 @@ def get_data_selenium(username, password):
     file_object = open(completeName, "w")
     html = mydriver.page_source
     file_object.write(html)
+
+    mydriver.minimize_window()
     
    
 
 
-get_data_selenium('nourayad','Dubsdining!') 
+#get_data_selenium('nourayad','Dubsdining!') 
